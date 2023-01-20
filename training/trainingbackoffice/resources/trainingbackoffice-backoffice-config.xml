@@ -48,6 +48,7 @@
 	</context>
 	<context type="PITUserAddress" component="listview" merge-by="type" parent="GenericItem">
 		<list-view:list-view>
+			<list-view:column qualifier="addressId" />
 			<list-view:column qualifier="houseName" />
 			<list-view:column qualifier="city" />
 			<list-view:column qualifier="state" />
@@ -73,6 +74,7 @@
 			<editorArea:tab name="hmc.tab.customer.common"
 							position="1">
 				<editorArea:section name="hmc.tab.customer.common">
+					<editorArea:attribute qualifier="addressId" />
 					<editorArea:attribute qualifier="houseName" />
 					<editorArea:attribute qualifier="city" />
 					<editorArea:attribute qualifier="state" />
@@ -90,7 +92,7 @@
 				<wz:content id="step1.content">
 					<wz:property-list root="newUser">
 						<wz:property qualifier="name" type="java.lang.String"/>
-						<wz:property qualifier="pitId" type="java.lang.String"/>
+						<wz:property qualifier="pitId" type="java.lang.Integer"/>
 						<wz:property qualifier="username" type="java.lang.String"/>
 						<wz:property qualifier="password" type="java.lang.String"/>
 						<wz:property qualifier="designation" type="localized:java.lang.String"/>
@@ -114,10 +116,11 @@
 			<wz:step id="step1" label="create.customer.essential.label" sublabel="create.customer.essential.sublabel">
 				<wz:content id="step1.content">
 					<wz:property-list root="newAddress">
+						<wz:property qualifier="addressId" type="java.lang.Integer"/>
 						<wz:property qualifier="houseName" type="localized:java.lang.String"/>
 						<wz:property qualifier="city" type="localized:java.lang.String"/>
 						<wz:property qualifier="state" type="localized:java.lang.String"/>
-						<wz:property qualifier="pin" type="java.lang.String"/>
+						<wz:property qualifier="pin" type="java.lang.Integer"/>
 						<wz:property qualifier="user" type="PITUsers"/>
 					</wz:property-list>
 				</wz:content>

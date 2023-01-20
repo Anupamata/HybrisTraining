@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at Jan 4, 2023, 11:38:19 AM                    ---
+ * --- Generated at Jan 16, 2023, 11:46:43 AM                   ---
  * ----------------------------------------------------------------
  */
 package org.training.core.jalo;
@@ -29,6 +29,8 @@ import org.training.core.jalo.PITUsers;
 @SuppressWarnings({"deprecation","unused","cast"})
 public abstract class GeneratedPITUserAddress extends GenericItem
 {
+	/** Qualifier of the <code>PITUserAddress.addressId</code> attribute **/
+	public static final String ADDRESSID = "addressId";
 	/** Qualifier of the <code>PITUserAddress.houseName</code> attribute **/
 	public static final String HOUSENAME = "houseName";
 	/** Qualifier of the <code>PITUserAddress.city</code> attribute **/
@@ -55,6 +57,7 @@ public abstract class GeneratedPITUserAddress extends GenericItem
 	static
 	{
 		final Map<String, AttributeMode> tmp = new HashMap<String, AttributeMode>();
+		tmp.put(ADDRESSID, AttributeMode.INITIAL);
 		tmp.put(HOUSENAME, AttributeMode.INITIAL);
 		tmp.put(CITY, AttributeMode.INITIAL);
 		tmp.put(STATE, AttributeMode.INITIAL);
@@ -66,6 +69,79 @@ public abstract class GeneratedPITUserAddress extends GenericItem
 	protected Map<String, AttributeMode> getDefaultAttributeModes()
 	{
 		return DEFAULT_INITIAL_ATTRIBUTES;
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>PITUserAddress.addressId</code> attribute.
+	 * @return the addressId - Unique ID of the Address.
+	 */
+	public Integer getAddressId(final SessionContext ctx)
+	{
+		return (Integer)getProperty( ctx, ADDRESSID);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>PITUserAddress.addressId</code> attribute.
+	 * @return the addressId - Unique ID of the Address.
+	 */
+	public Integer getAddressId()
+	{
+		return getAddressId( getSession().getSessionContext() );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>PITUserAddress.addressId</code> attribute. 
+	 * @return the addressId - Unique ID of the Address.
+	 */
+	public int getAddressIdAsPrimitive(final SessionContext ctx)
+	{
+		Integer value = getAddressId( ctx );
+		return value != null ? value.intValue() : 0;
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>PITUserAddress.addressId</code> attribute. 
+	 * @return the addressId - Unique ID of the Address.
+	 */
+	public int getAddressIdAsPrimitive()
+	{
+		return getAddressIdAsPrimitive( getSession().getSessionContext() );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>PITUserAddress.addressId</code> attribute. 
+	 * @param value the addressId - Unique ID of the Address.
+	 */
+	public void setAddressId(final SessionContext ctx, final Integer value)
+	{
+		setProperty(ctx, ADDRESSID,value);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>PITUserAddress.addressId</code> attribute. 
+	 * @param value the addressId - Unique ID of the Address.
+	 */
+	public void setAddressId(final Integer value)
+	{
+		setAddressId( getSession().getSessionContext(), value );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>PITUserAddress.addressId</code> attribute. 
+	 * @param value the addressId - Unique ID of the Address.
+	 */
+	public void setAddressId(final SessionContext ctx, final int value)
+	{
+		setAddressId( ctx,Integer.valueOf( value ) );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>PITUserAddress.addressId</code> attribute. 
+	 * @param value the addressId - Unique ID of the Address.
+	 */
+	public void setAddressId(final int value)
+	{
+		setAddressId( getSession().getSessionContext(), value );
 	}
 	
 	/**

@@ -540,4 +540,13 @@
 	</bean>
 	<bean id="myJobPerformable" class="de.hybris.cronjobtutorial.jalo.MyJobPerformable"
 		  parent="abstractJobPerformable"/>
+
+	<alias alias="pitUserDao" name="defaultPitUserDao"/>
+	<bean id="defaultPitUserDao"
+		  class="org.training.core.dao.impl.DefaultPitUserDao">
+		<property name="flexibleSearchService" ref="flexibleSearchService"/>
+	</bean>
+	<bean id="pitUserService" class="org.training.core.services.impl.DefaultPitUserService">
+		<property name="pitUserDao" ref="pitUserDao"/>
+	</bean>
 </beans>

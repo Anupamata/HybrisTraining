@@ -166,6 +166,11 @@
                 </description>
                 <deployment table="PITUserAddress" typecode="24602"/>
                 <attributes>
+                    <attribute qualifier="addressId" type="java.lang.Integer">
+                        <description>Unique ID of the Address.</description>
+                        <modifiers optional="false" unique="true" initial="true"/>
+                        <persistence type="property"/>
+                    </attribute>
                     <attribute qualifier="houseName" type="localized:java.lang.String">
                         <description>HouseName of the user.</description>
                         <modifiers/>

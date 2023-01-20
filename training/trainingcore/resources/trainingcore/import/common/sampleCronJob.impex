@@ -3,9 +3,3 @@ INSERT_UPDATE HelloWorldCronJob; code[unique = true]; job(code); sessionLanguage
 
 INSERT_UPDATE Trigger; cronJob(code)[unique = true]    ; cronExpression
 ; myHelloworldServicelayerCronJob ; 0 8 11 * * ?
-
-INSERT_UPDATE PITUsers;pitId[unique = true];name
-;1634;Subin
-
-INSERT_UPDATE PITUsers;pitId[unique = true];name;username;password;designation
-;1634;Joseph;joseph.ts;josephtom;BA
