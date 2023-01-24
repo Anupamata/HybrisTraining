@@ -1615,11 +1615,10 @@
                   value="org.training.user.data.PitUserDataWSDTO"/>
         <property name="levelMapping">
             <map>
-                <entry key="BASIC" value="pitId,name,username,designation"/>
-                <entry key="DEFAULT" value="pitId,name,username,designation"/>
+                <entry key="BASIC" value="pitId"/>
+                <entry key="DEFAULT" value="pitId,name"/>
                 <entry key="FULL" value="pitId,name,username,designation"/>
             </map>
         </property>
     </bean>
-
 </beans>

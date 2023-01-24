@@ -3,6 +3,7 @@ package org.training.core.services.impl;
 import org.training.core.dao.PitUserDao;
 import org.training.core.model.PITUsersModel;
 import org.training.core.services.PitUserService;
+import org.training.facades.product.data.PitUserData;
 
 import java.util.List;
 
@@ -13,6 +14,7 @@ public class DefaultPitUserService implements PitUserService {
     public List<PITUsersModel> getAllPitUsers() {
         return getPitUserDao().getAllPitUsers();
     }
+
 
     public PitUserDao getPitUserDao() {
         return pitUserDao;

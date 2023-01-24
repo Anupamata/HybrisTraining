@@ -186,9 +186,12 @@
 <!-- pitUser facade bean created and Converter and Populator defined-->
 	<alias name="defaultPitUserFacade" alias="pitUserFacade"/>
 	<bean id="defaultPitUserFacade"
-		  class="org.training.facades.pituser.impl.DefaultPitUserFacade">
+		  class="org.training.facades.PitUser.impl.DefaultPitUserFacade">
 		<property name="pitUserService" ref="pitUserService" />
 		<property name="pitUserDataConverter" ref="pitUserDataConverter" />
+		<property name="modelService" ref="modelService" />
+		<property name="pitUserDataReverseConverter" ref="pitUserDataReverseConverter" />
+
 	</bean>
 
 	<alias name="pitUserDataConverter" alias="pitUserDataConverter"/>
@@ -202,5 +205,17 @@
 	</bean>
 
 	<bean id="pitUserPopulator" class="org.training.facades.populators.PitUserPopulator"/>
+
+	<alias name="pitUserDataReverseConverter" alias="pitUserDataReverseConverter"/>
+	<bean id="pitUserDataReverseConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="org.training.core.model.PITUsersModel"/>
+		<property name="populators">
+			<list>
+				<ref bean="pitUserReversePopulator"/>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="pitUserReversePopulator" class="org.training.facades.populators.pitUserReversePopulator"/>
 
 </beans>

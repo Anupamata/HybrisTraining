@@ -5,6 +5,7 @@ import de.hybris.platform.servicelayer.search.SearchResult;
 import org.apache.log4j.Logger;
 import org.training.core.dao.PitUserDao;
 import org.training.core.model.PITUsersModel;
+import org.training.facades.product.data.PitUserData;
 
 import java.util.Collections;
 import java.util.List;
@@ -19,4 +20,5 @@ public class DefaultPitUserDao extends AbstractItemDao implements PitUserDao {
         final SearchResult<PITUsersModel> usersModelSearchResult = getFlexibleSearchService().search(GET_ALL_PITUSER);
         return usersModelSearchResult.getResult() == null ? Collections.emptyList() : usersModelSearchResult.getResult();
     }
+
 }

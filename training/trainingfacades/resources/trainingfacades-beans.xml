@@ -16,6 +16,7 @@
 		<property name="pitId" type="Integer"/>
 		<property name="name" type="String"/>
 		<property name="username" type="String"/>
+		<property name="password" type="String"/>
 		<property name="designation" type="String"/>
 	</bean>
 </beans>
