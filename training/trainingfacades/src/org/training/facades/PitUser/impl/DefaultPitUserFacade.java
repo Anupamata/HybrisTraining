@@ -25,11 +25,8 @@ public class DefaultPitUserFacade implements PitUserFacade {
 
     @Override
     public void insertPitUser(PitUserData pitUserData) {
-        var pitUsersModel=pitUserDataReverseConverter.convert(pitUserData);
-                if(pitUsersModel!=null)
-                {
-                    modelService.save(pitUsersModel);
-                }
+        var pitUsersModel = pitUserDataReverseConverter.convert(pitUserData);
+        modelService.save(pitUsersModel);
     }
 
     public PitUserService getPitUserService() {
