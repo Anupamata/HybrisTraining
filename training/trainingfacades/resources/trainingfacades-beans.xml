@@ -6,6 +6,7 @@
 
 	<bean class="de.hybris.platform.commercefacades.product.data.ProductData">
 		<property name="genders" type="java.util.List&lt;org.training.facades.product.data.GenderData>"/>
+		<property name="companyName" type="String"/>
 	</bean>
 
 	<bean class="org.training.facades.product.data.GenderData">
@@ -19,4 +20,5 @@
 		<property name="password" type="String"/>
 		<property name="designation" type="String"/>
 	</bean>
+
 </beans>

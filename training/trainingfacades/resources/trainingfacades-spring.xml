@@ -218,4 +218,10 @@
 
 	<bean id="pitUserReversePopulator" class="org.training.facades.populators.pitUserReversePopulator"/>
 
+
+	<!-- CustomSearchResultVariantProductPopulator -->
+	<alias name="customSearchResultVariantProductPopulator" alias="commerceSearchResultProductPopulator"/>
+	<bean id="customSearchResultVariantProductPopulator" class="org.training.facades.populators.CustomSearchResultVariantProductPopulator"
+		  parent="variantCommerceSearchResultProductPopulator"/>
+
 </beans>
