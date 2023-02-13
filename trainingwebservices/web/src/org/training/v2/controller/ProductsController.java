@@ -3,16 +3,13 @@
  */
 package org.training.v2.controller;
 
+import com.google.common.base.Splitter;
+import com.google.common.collect.Lists;
 import de.hybris.platform.catalog.enums.ProductReferenceTypeEnum;
 import de.hybris.platform.commercefacades.catalog.CatalogFacade;
 import de.hybris.platform.commercefacades.product.ProductFacade;
 import de.hybris.platform.commercefacades.product.ProductOption;
-import de.hybris.platform.commercefacades.product.data.ProductData;
-import de.hybris.platform.commercefacades.product.data.ProductReferenceData;
-import de.hybris.platform.commercefacades.product.data.ProductReferencesData;
-import de.hybris.platform.commercefacades.product.data.ReviewData;
-import de.hybris.platform.commercefacades.product.data.StockData;
-import de.hybris.platform.commercefacades.product.data.SuggestionData;
+import de.hybris.platform.commercefacades.product.data.*;
 import de.hybris.platform.commercefacades.search.ProductSearchFacade;
 import de.hybris.platform.commercefacades.search.data.AutocompleteSuggestionData;
 import de.hybris.platform.commercefacades.search.data.SearchStateData;
@@ -21,12 +18,7 @@ import de.hybris.platform.commercefacades.storefinder.data.StoreFinderStockSearc
 import de.hybris.platform.commerceservices.search.facetdata.ProductSearchPageData;
 import de.hybris.platform.commerceservices.search.pagedata.PageableData;
 import de.hybris.platform.commerceservices.store.data.GeoPoint;
-import de.hybris.platform.commercewebservicescommons.dto.product.ProductReferenceListWsDTO;
-import de.hybris.platform.commercewebservicescommons.dto.product.ProductWsDTO;
-import de.hybris.platform.commercewebservicescommons.dto.product.ReviewListWsDTO;
-import de.hybris.platform.commercewebservicescommons.dto.product.ReviewWsDTO;
-import de.hybris.platform.commercewebservicescommons.dto.product.StockWsDTO;
-import de.hybris.platform.commercewebservicescommons.dto.product.SuggestionListWsDTO;
+import de.hybris.platform.commercewebservicescommons.dto.product.*;
 import de.hybris.platform.commercewebservicescommons.dto.queues.ProductExpressUpdateElementListWsDTO;
 import de.hybris.platform.commercewebservicescommons.dto.search.facetdata.ProductSearchPageWsDTO;
 import de.hybris.platform.commercewebservicescommons.dto.store.StoreFinderStockSearchPageWsDTO;
@@ -37,6 +29,20 @@ import de.hybris.platform.webservicescommons.cache.CacheControl;
 import de.hybris.platform.webservicescommons.cache.CacheControlDirective;
 import de.hybris.platform.webservicescommons.swagger.ApiBaseSiteIdParam;
 import de.hybris.platform.webservicescommons.swagger.ApiFieldsParam;
+import io.swagger.annotations.*;
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.Validator;
+import org.springframework.web.bind.annotation.*;
+import org.training.facades.PitUser.CustomProductFacade;
+import org.training.facades.PitUser.impl.DefaultCustomProductFacade;
 import org.training.formatters.WsDateFormatter;
 import org.training.product.data.ReviewDataList;
 import org.training.product.data.SuggestionDataList;
@@ -50,44 +56,9 @@ import org.training.validator.PointOfServiceValidator;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Date;
-import java.util.EnumSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
+import javax.ws.rs.QueryParam;
+import java.util.*;
 import java.util.stream.Collectors;
-
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.security.access.annotation.Secured;
-import org.springframework.stereotype.Controller;
-import org.springframework.validation.Validator;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
-
-import com.google.common.base.Splitter;
-import com.google.common.collect.Lists;
-
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.Authorization;
 
 
 /**
@@ -107,10 +78,11 @@ public class ProductsController extends BaseController
 	private static final String COMMA_SEPARATOR = ",";
 	private static final Logger LOG = LoggerFactory.getLogger(ProductsController.class);
 
+
 	@Resource(name = "storeFinderStockFacade")
 	private StoreFinderStockFacade storeFinderStockFacade;
-	@Resource(name = "cwsProductFacade")
-	private ProductFacade productFacade;
+	@Resource(name = "productFacade")
+	private CustomProductFacade productFacade;
 	@Resource(name = "wsDateFormatter")
 	private WsDateFormatter wsDateFormatter;
 	@Resource(name = "productSearchFacade")
@@ -132,6 +104,14 @@ public class ProductsController extends BaseController
 	@Resource(name = "productsHelper")
 	private ProductsHelper productsHelper;
 
+
+
+	@RequestMapping(value = "/{productCode}", method = RequestMethod.POST)
+	@ResponseStatus(HttpStatus.CREATED)
+	@ResponseBody
+	public void addCompanyName (@PathVariable final String productCode,@QueryParam("companyName") final String companyName){
+		productFacade.saveCompanyName(productCode,companyName);
+	}
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	@ResponseBody
 	@ApiOperation(nickname = "getProducts", value = "Get a list of products and additional data", notes =
@@ -474,5 +454,7 @@ public class ProductsController extends BaseController
 		}
 		return catalogInfo;
 	}
+
+
 
 }

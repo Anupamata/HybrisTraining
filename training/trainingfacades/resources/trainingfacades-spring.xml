@@ -224,4 +224,13 @@
 	<bean id="customSearchResultVariantProductPopulator" class="org.training.facades.populators.CustomSearchResultVariantProductPopulator"
 		  parent="variantCommerceSearchResultProductPopulator"/>
 
+	<!-- CustomProductFacade bean-->
+
+	<alias name="defaultCustomProductFacade" alias="productFacade"/>
+	<bean id="defaultCustomProductFacade" class="org.training.facades.PitUser.impl.DefaultCustomProductFacade" parent="defaultProductFacade">
+		<property name="modelService" ref="modelService" />
+		<property name="productService" ref="productService"/>
+		<property name="catalogVersionService" ref="catalogVersionService" />
+	</bean>
+
 </beans>
