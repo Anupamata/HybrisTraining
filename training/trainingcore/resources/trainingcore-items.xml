@@ -27,6 +27,7 @@
         </enumtype>
     </enumtypes>
 
+
     <relations>
         <relation localized="false" code="PITUsers2PITUserAddressRelation" autocreate="true">
             <sourceElement type="PITUsers" qualifier="user" cardinality="one">
@@ -155,6 +156,11 @@
                         <description>designation of the user.</description>
                         <modifiers/>
                         <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="skillLevel" type="java.lang.String">
+                        <description>Skill level of the user based on designation.</description>
+                        <modifiers write="false"/>
+                        <persistence type="dynamic" attributeHandler="pitUserSkillLevelHandler"/>
                     </attribute>
                 </attributes>
             </itemtype>

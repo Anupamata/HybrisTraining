@@ -19,6 +19,7 @@
 		<property name="username" type="String"/>
 		<property name="password" type="String"/>
 		<property name="designation" type="String"/>
+		<property name="skillLevel" type="String"/>
 	</bean>
 
 </beans>

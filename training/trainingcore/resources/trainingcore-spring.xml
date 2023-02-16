@@ -549,4 +549,7 @@
 	<bean id="pitUserService" class="org.training.core.services.impl.DefaultPitUserService">
 		<property name="pitUserDao" ref="pitUserDao"/>
 	</bean>
+	<bean id="pitUserSkillLevelHandler" class="org.training.core.attributehandlers.PitUserSkillLevelHandler"/>
+
+
 </beans>

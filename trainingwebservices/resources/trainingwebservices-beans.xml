@@ -189,6 +189,7 @@
 		<property name="name" type="String"/>
 		<property name="username" type="String"/>
 		<property name="designation" type="String"/>
+		<property name="skillLevel" type="String"/>
 	</bean>
 
 	<bean class="org.training.user.data.PitUserDataListWSDTO">

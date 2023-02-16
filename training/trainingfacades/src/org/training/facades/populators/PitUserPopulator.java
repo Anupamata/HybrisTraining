@@ -13,5 +13,6 @@ public class PitUserPopulator implements Populator<PITUsersModel, PitUserData> {
         target.setName(source.getName());
         target.setUsername(source.getUsername());
         target.setDesignation(source.getDesignation());
+        target.setSkillLevel(source.getSkillLevel());
     }
 }
