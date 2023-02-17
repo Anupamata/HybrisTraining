@@ -183,13 +183,14 @@
 		<property name="pagination" type="de.hybris.platform.commerceservices.search.pagedata.PaginationData"/>
 	</bean>
 
-<!-- pituser dto added -->
+<!-- pituser wsdto added -->
 	<bean class="org.training.user.data.PitUserDataWSDTO">
 		<property name="pitId" type="Integer"/>
 		<property name="name" type="String"/>
 		<property name="username" type="String"/>
 		<property name="designation" type="String"/>
 		<property name="skillLevel" type="String"/>
+		<property name="skillGrade" type="String"/>
 	</bean>
 
 	<bean class="org.training.user.data.PitUserDataListWSDTO">

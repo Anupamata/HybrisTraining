@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at Feb 16, 2023, 8:54:58 PM                    ---
+ * --- Generated at Feb 17, 2023, 11:08:58 AM                   ---
  * ----------------------------------------------------------------
  */
 package org.training.core.constants;
@@ -23,6 +23,7 @@ public class GeneratedTrainingCoreConstants
 		public static final String HELLOWORLDCRONJOB = "HelloWorldCronJob".intern();
 		public static final String PITUSERADDRESS = "PITUserAddress".intern();
 		public static final String PITUSERS = "PITUsers".intern();
+		public static final String SKILLGRADE = "SkillGrade".intern();
 		public static final String SWATCHCOLORENUM = "SwatchColorEnum".intern();
 	}
 	public static class Attributes
@@ -34,6 +35,13 @@ public class GeneratedTrainingCoreConstants
 	}
 	public static class Enumerations
 	{
+		public static class SkillGrade
+		{
+			public static final String GRADE_ONE = "GRADE_ONE".intern();
+			public static final String GRADE_TWO = "GRADE_TWO".intern();
+			public static final String GRADE_THREE = "GRADE_THREE".intern();
+			public static final String UNDEFINED = "UNDEFINED".intern();
+		}
 		public static class SwatchColorEnum
 		{
 			public static final String BLACK = "BLACK".intern();

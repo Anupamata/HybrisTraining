@@ -25,6 +25,12 @@
             <value code="WHITE"/>
             <value code="YELLOW"/>
         </enumtype>
+        <enumtype generate="true" code="SkillGrade" autocreate="true" dynamic="true">
+        <value code="GRADE_ONE"/>
+        <value code="GRADE_TWO"/>
+        <value code="GRADE_THREE"/>
+        <value code="UNDEFINED"/>
+        </enumtype>
     </enumtypes>
 
 
@@ -161,6 +167,12 @@
                         <description>Skill level of the user based on designation.</description>
                         <modifiers write="false"/>
                         <persistence type="dynamic" attributeHandler="pitUserSkillLevelHandler"/>
+                    </attribute>
+
+                    <attribute qualifier="skillGrade" type="SkillGrade">
+                        <description>Skill grade of the user based on designation.</description>
+                        <modifiers write="false"/>
+                        <persistence type="dynamic" attributeHandler="pitUserSkillGradeHandler"/>
                     </attribute>
                 </attributes>
             </itemtype>

@@ -20,6 +20,7 @@
 		<property name="password" type="String"/>
 		<property name="designation" type="String"/>
 		<property name="skillLevel" type="String"/>
+		<property name="skillGrade" type="org.training.core.enums.SkillGrade"/>
 	</bean>
 
 </beans>

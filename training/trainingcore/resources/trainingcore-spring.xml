@@ -550,6 +550,6 @@
 		<property name="pitUserDao" ref="pitUserDao"/>
 	</bean>
 	<bean id="pitUserSkillLevelHandler" class="org.training.core.attributehandlers.PitUserSkillLevelHandler"/>
-
+	<bean id="pitUserSkillGradeHandler" class="org.training.core.attributehandlers.PitUserSkillGradeHandler"/>
 
 </beans>
