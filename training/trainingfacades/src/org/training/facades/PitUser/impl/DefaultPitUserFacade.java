@@ -29,6 +29,12 @@ public class DefaultPitUserFacade implements PitUserFacade {
         modelService.save(pitUsersModel);
     }
 
+    @Override
+    public void updateUsername(int pitId) {
+        final PITUsersModel pitUserModel = pitUserService.getPitUserByCode(pitId);
+        pitUserService.createColumnUpdateBusinessProcess(pitUserModel);
+    }
+
     public PitUserService getPitUserService() {
         return pitUserService;
     }

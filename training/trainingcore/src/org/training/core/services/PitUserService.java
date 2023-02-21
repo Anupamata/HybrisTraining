@@ -6,4 +6,8 @@ import java.util.List;
 
 public interface PitUserService {
     List<PITUsersModel> getAllPitUsers();
+
+    PITUsersModel getPitUserByCode(int pitId);
+
+    void createColumnUpdateBusinessProcess(PITUsersModel pitUserModel);
 }

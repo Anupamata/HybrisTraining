@@ -548,6 +548,8 @@
 	</bean>
 	<bean id="pitUserService" class="org.training.core.services.impl.DefaultPitUserService">
 		<property name="pitUserDao" ref="pitUserDao"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+		<property name="modelService" ref="modelService"/>
 	</bean>
 	<bean id="pitUserSkillLevelHandler" class="org.training.core.attributehandlers.PitUserSkillLevelHandler"/>
 	<bean id="pitUserSkillGradeHandler" class="org.training.core.attributehandlers.PitUserSkillGradeHandler"/>

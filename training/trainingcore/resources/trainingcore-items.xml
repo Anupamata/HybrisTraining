@@ -224,5 +224,16 @@
                 </attributes>
             </itemtype>
         </typegroup>
+        <typegroup name="ColumnUpdateProcess">
+            <itemtype code="ColumnUpdateProcess" autocreate="true" generate="true" extends="BusinessProcess">
+                 <description>Process for update username of PitUser</description>
+                 <attributes>
+                    <attribute qualifier="pitUser" type="PITUsers">
+                        <persistence type="property" />
+                        <description>PitUser attribute that will be used in the process.</description>
+                    </attribute>
+                 </attributes>
+            </itemtype>
+        </typegroup>
     </itemtypes>
 </items>
