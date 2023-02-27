@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at Feb 21, 2023, 11:32:11 AM                   ---
+ * --- Generated at Feb 22, 2023, 12:53:00 PM                   ---
  * ----------------------------------------------------------------
  */
 package org.training.core.jalo;
@@ -31,6 +31,7 @@ import org.training.core.jalo.ColumnUpdateProcess;
 import org.training.core.jalo.ElectronicsColorVariantProduct;
 import org.training.core.jalo.PITUserAddress;
 import org.training.core.jalo.PITUsers;
+import org.training.core.jalo.PitUserEmailProcess;
 
 /**
  * Generated class for type <code>TrainingCoreManager</code>.
@@ -323,6 +324,32 @@ public abstract class GeneratedTrainingCoreManager extends Extension
 	public PITUserAddress createPITUserAddress(final Map attributeValues)
 	{
 		return createPITUserAddress( getSession().getSessionContext(), attributeValues );
+	}
+	
+	public PitUserEmailProcess createPitUserEmailProcess(final SessionContext ctx, final Map attributeValues)
+	{
+		try
+		{
+			ComposedType type = getTenant().getJaloConnection().getTypeManager().getComposedType( TrainingCoreConstants.TC.PITUSEREMAILPROCESS );
+			return (PitUserEmailProcess)type.newInstance( ctx, attributeValues );
+		}
+		catch( JaloGenericCreationException e)
+		{
+			final Throwable cause = e.getCause();
+			throw (cause instanceof RuntimeException ?
+			(RuntimeException)cause
+			:
+			new JaloSystemException( cause, cause.getMessage(), e.getErrorCode() ) );
+		}
+		catch( JaloBusinessException e )
+		{
+			throw new JaloSystemException( e ,"error creating PitUserEmailProcess : "+e.getMessage(), 0 );
+		}
+	}
+	
+	public PitUserEmailProcess createPitUserEmailProcess(final Map attributeValues)
+	{
+		return createPitUserEmailProcess( getSession().getSessionContext(), attributeValues );
 	}
 	
 	public PITUsers createPITUsers(final SessionContext ctx, final Map attributeValues)

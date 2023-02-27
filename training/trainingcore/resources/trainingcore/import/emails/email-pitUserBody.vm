@@ -1,0 +1,32 @@
+## messageSource=classpath:/trainingcore/messages/email-forgottenPassword_$lang.properties
+#macro(genHtmlLinkStartTag $url)
+<a href="$url"><font color="#666666">
+#end
+#macro(genHtmlLinkEndTag)
+</font></a>
+#end
+#macro(genHtmlLink $url $textColor $bodyContent)
+<a href="$url"><font color="$textColor">$bodyContent</font></a>
+#end
+
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body bgcolor="#ffffff">
+	Hello ${ctx.displayName}...!<br>
+	<div>
+	<B><i>Your Details</B></i><br><br>
+	<b>Pit Username</b> : ${ctx.pitUserData.username}<br>
+	<b>Pit ID </b> : ${ctx.pitUserData.pitId}<br>
+	<b>Designation </b> : ${ctx.pitUserData.designation}<br>
+	 <br>
+	 <br>
+	 <br>
+     <br>
+<br>
+        Thanks and Regards,<br>
+        PITS
+	</div>
+</body>
+</html>

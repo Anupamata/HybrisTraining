@@ -191,6 +191,12 @@
 		Event listeners are singletons, therefore the dependency for a bean in tenant-scope
 		must be configured with a lookup method.
 	-->
+	<!--pitUserEmailEvent-->
+	<bean id="pitUserEmailEventListener"
+		  class="org.training.core.event.PitUserEmailEventListener" parent="abstractEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
 	<bean id="orderCancelledEventListener"
 	      class="org.training.core.event.OrderCancelledEventListener" parent="abstractAcceleratorSiteEventListener">
 		<property name="modelService" ref="modelService"/>
@@ -293,6 +299,11 @@
 	      class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
 		<property name="resource" value="classpath:/trainingcore/processes/sendNotPickedUpConsignmentCanceledEmailProcess.xml"/>
 	</bean>
+	<!--bean for PitUserEmailProcess.xml -->
+	<bean id="pitUserEmailProcessDefinitionResource"
+		  class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/trainingcore/processes/pitUserEmailProcess.xml"/>
+	</bean>
 
 	<!-- Actions -->
 	<bean id="abstractAction" class="de.hybris.platform.processengine.action.AbstractAction"
@@ -312,6 +323,10 @@
 		<property name="cmsEmailPageService" ref="cmsEmailPageService"/>
 		<property name="contextResolutionStrategy" ref="processContextResolutionStrategy"/>
 		<property name="emailGenerationService" ref="emailGenerationService"/>
+	</bean>
+<!--	generatePitUserEmailAction-->
+	<bean id="generatePitUserEmailAction" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="PitUserEmailTemplate"/>
 	</bean>
 
 	<bean id="generateCustomerRegistrationEmail" parent="abstractGenerateEmailAction">
@@ -550,6 +565,10 @@
 		<property name="pitUserDao" ref="pitUserDao"/>
 		<property name="businessProcessService" ref="businessProcessService"/>
 		<property name="modelService" ref="modelService"/>
+		<property name="eventService" ref="eventService"/>
+		<property name="baseSiteService" ref="baseSiteService"/>
+		<property name="commonI18NService" ref="commonI18NService"/>
+		<property name="userService" ref="userService"/>
 	</bean>
 	<bean id="pitUserSkillLevelHandler" class="org.training.core.attributehandlers.PitUserSkillLevelHandler"/>
 	<bean id="pitUserSkillGradeHandler" class="org.training.core.attributehandlers.PitUserSkillGradeHandler"/>

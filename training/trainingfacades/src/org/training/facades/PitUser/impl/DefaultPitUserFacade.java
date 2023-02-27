@@ -35,6 +35,12 @@ public class DefaultPitUserFacade implements PitUserFacade {
         pitUserService.createColumnUpdateBusinessProcess(pitUserModel);
     }
 
+    @Override
+    public void sendEmail(int pitId) {
+        final PITUsersModel pitUserModel = pitUserService.getPitUserByCode(pitId);
+        pitUserService.sendEmail(pitUserModel);
+    }
+
     public PitUserService getPitUserService() {
         return pitUserService;
     }

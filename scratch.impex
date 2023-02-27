@@ -1,0 +1,91 @@
+#Solr indexing
+$productCatalog = electronicsProductCatalog
+$catalogVersions = catalogVersions(catalog(id), version);
+$facetSearchConfigName = electronicsIndex
+$facetSearchConfigDescription = Electronics Solr Index
+$searchIndexNamePrefix = electronics
+$solrIndexedType = electronicsProductType
+$indexBaseSite = electronics
+$indexLanguages = ja, en, de, zh
+$indexCurrencies = JPY, USD
+
+INSERT_UPDATE SolrIndexedProperty; solrIndexedType(identifier)[unique = true]; name[unique = true]; type(code); sortableType(code); currency[default = false]; localized[default = false]; multiValue[default = false]; useForSpellchecking[default = false]; useForAutocomplete[default = false]; fieldValueProvider; valueProviderParameter; ftsPhraseQuery[default = false]; ftsPhraseQueryBoost; ftsQuery[default = false]; ftsQueryBoost; ftsFuzzyQuery[default = false]; ftsFuzzyQueryBoost; ftsWildcardQuery[default = false]; ftsWildcardQueryType(code)[default = POSTFIX]; ftsWildcardQueryBoost; ftsWildcardQueryMinTermLength
+                                 ; $solrIndexedType                          ; companyName        ; string    ;                   ;                          ; true                      ;                            ;                                     ;                                    ;                   ;                       ;                                ;                    ;                          ;              ;                               ;                   ;                                  ;                                              ;                      ;
+
+
+INSERT_UPDATE SolrSearchQueryProperty; indexedProperty(name, solrIndexedType(identifier))[unique = true]; searchQueryTemplate(name, indexedType(identifier))[unique = true][default = DEFAULT:$solrIndexedType]; facet; ftsPhraseQuery[default = false]; ftsPhraseQueryBoost; ftsQuery[default = false]; ftsQueryBoost; ftsFuzzyQuery[default = false]; ftsFuzzyQueryBoost; ftsWildcardQuery[default = false]; ftsWildcardQueryType(code)[default = POSTFIX]; ftsWildcardQueryBoost; ftsWildcardQueryMinTermLength; includeInResponse[default = true]; useForHighlighting[default = false]
+                                     ; companyName:$solrIndexedType                                     ;                                                                                                      ;      ;                                ;                    ;                          ;              ;                               ;                   ;                                  ;                                              ;                      ;                              ;                                  ; true
+
+
+#Color classification attribute added
+$productCatalog=electronicsProductCatalog
+$productCatalogName=Electronics Product Catalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default=$productCatalog:Online]
+$classCatalogVersion=catalogversion(catalog(id[default='ElectronicsClassification']),version[default='1.0'])[unique=true,default='ElectronicsClassification:1.0']
+$classSystemVersion=systemVersion(catalog(id[default='ElectronicsClassification']),version[default='1.0'])[unique=true]
+$class=classificationClass(ClassificationClass.code,$classCatalogVersion)[unique=true]
+$supercategories=source(code, $classCatalogVersion)[unique=true]
+$categories=target(code, $catalogVersion)[unique=true]
+$attribute=classificationAttribute(code,$classSystemVersion)[unique=true]
+$unit=unit(code,$classSystemVersion)
+$lang=en
+
+INSERT_UPDATE ClassificationClass; code[unique = true]; name[lang = $lang]; $classCatalogVersion; allowedPrincipals(uid)[default = 'customergroup']
+                                 ; 577         ; Color Custom Classification Class
+INSERT_UPDATE ClassificationAttribute; code[unique = true]; name[lang = $lang]; $classSystemVersion;
+                                     ; colorCustomAttr           ; Color Attribute
+INSERT_UPDATE CategoryCategoryRelation; $supercategories;$categories
+                                      ; 577; 1288
+INSERT_UPDATE ClassAttributeAssignment; $class; $attribute; position;attributeValues(code, $classSystemVersion); range[default = false]; $unit; listable[default = true]; localized[default = true]
+                                      ; 577         ; colorCustomAttr           ; 1  ;
+
+
+
+
+
+
+
+
+$contentCatalog=apparel-ukContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online])[default=$contentCatalog:Online]
+$wideContent=CMSImageComponent,BannerComponent
+
+# Import modulegen config properties into impex macros
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+$jarResourceCms=$config-jarResourceCmsValue
+$emailPackageName=$config-emailContextPackageName
+$emailResource=$config-emailResourceValue
+
+$lang=en
+
+INSERT_UPDATE RendererTemplate;code[unique=true];contextClass;rendererType(code)[default='velocity']
+                              ;pitUserBody;$emailPackageName.PitUserEmailContext
+                              ;pitUserSubject;$emailPackageName.PitUserEmailContext
+
+
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+                       ;pitUserBody;"Pit user Email Body";$emailResource/email-pitUserBody.vm
+                       ;pitUserSubject;"Pit user Email Subject";$emailResource/email-pitUserSubject.vm
+
+
+INSERT_UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];name;active;frontendTemplateName;subject(code);htmlTemplate(code);restrictedPageTypes(code)
+                               ;;PitUserEmailTemplate;Pit user Email Template;true;PitUserEmail;pitUserSubject;pitUserBody;EmailPage
+
+
+INSERT_UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved'];fromEmail[lang=en];fromName[lang=en]
+                       ;;PitUserEmail; Pit User Email;PitUserEmailTemplate;true;;anupamaaju619@gmail.com;Anupama
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active
+                         ;;EmailTopSlot;Default Email Top Slot;true
+                         ;;EmailBottomSlot;Default Email Bottom Slot;true
+                         ;;EmailSiteLogoSlot;Default Email Site Slot;true
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='PitUserEmailTemplate'];validComponentTypes(code)
+                             ;SiteLogo;;;logo
+                             ;TopContent;;$wideContent;
+                             ;BottomContent;;$wideContent;
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='PitUserEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+                                    ;;SiteLogo-PitUserEmail;SiteLogo;;EmailSiteLogoSlot;true
+                                    ;;TopContent-PitUserEmail;TopContent;;EmailTopSlot;true
+                                    ;;BottomContent-PitUserEmail;BottomContent;;EmailBottomSlot;true

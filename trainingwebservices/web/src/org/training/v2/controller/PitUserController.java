@@ -41,5 +41,11 @@ public class PitUserController extends BaseController {
     public void updateUsername(@PathVariable final int pitId) {
         pitUserFacade.updateUsername(pitId);
     }
+    @RequestMapping(method = RequestMethod.POST,value = "/sendEmail/{pitId}")
+    @ResponseBody
+    @ResponseStatus(value = HttpStatus.OK)
+    public void sendEmail(@PathVariable final int pitId) {
+        pitUserFacade.sendEmail(pitId);
+    }
 }
 

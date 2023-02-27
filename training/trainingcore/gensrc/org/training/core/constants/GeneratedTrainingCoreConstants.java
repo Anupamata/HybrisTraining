@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at Feb 21, 2023, 11:32:11 AM                   ---
+ * --- Generated at Feb 22, 2023, 12:53:00 PM                   ---
  * ----------------------------------------------------------------
  */
 package org.training.core.constants;
@@ -23,6 +23,7 @@ public class GeneratedTrainingCoreConstants
 		public static final String ELECTRONICSCOLORVARIANTPRODUCT = "ElectronicsColorVariantProduct".intern();
 		public static final String HELLOWORLDCRONJOB = "HelloWorldCronJob".intern();
 		public static final String PITUSERADDRESS = "PITUserAddress".intern();
+		public static final String PITUSEREMAILPROCESS = "PitUserEmailProcess".intern();
 		public static final String PITUSERS = "PITUsers".intern();
 		public static final String SKILLGRADE = "SkillGrade".intern();
 		public static final String SWATCHCOLORENUM = "SwatchColorEnum".intern();

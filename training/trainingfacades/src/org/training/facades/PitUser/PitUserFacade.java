@@ -11,4 +11,6 @@ public interface PitUserFacade {
     void insertPitUser(PitUserData request);
 
     void updateUsername(int pitId);
+
+    void sendEmail(int pitId);
 }

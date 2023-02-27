@@ -120,6 +120,10 @@
 		</property>
 	</bean>
 
+	<bean id="pitUserEmailContext" class="org.training.facades.process.email.context.PitUserEmailContext" parent="abstractEmailContext" scope="prototype" >
+		<property name="pitUserDataConverter" ref="pitUserDataConverter" />
+	</bean>
+
 	<bean id="customerEmailContext" class="org.training.facades.process.email.context.CustomerEmailContext" parent="abstractEmailContext" scope="prototype" >
 		<property name="customerConverter" ref="customerConverter"/>
 	</bean>

@@ -235,5 +235,16 @@
                  </attributes>
             </itemtype>
         </typegroup>
+        <typegroup name="PitUserEmailProcess">
+            <itemtype code="PitUserEmailProcess" autocreate="true" generate="true" extends="StoreFrontCustomerProcess">
+                <description>Email Business Process for PitUser</description>
+                <attributes>
+                    <attribute qualifier="pitUser" type="PITUsers">
+                        <persistence type="property" />
+                        <description>PitUser attribute that will be used in the process.</description>
+                    </attribute>
+                </attributes>
+            </itemtype>
+        </typegroup>
     </itemtypes>
 </items>
