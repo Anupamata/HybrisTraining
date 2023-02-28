@@ -1,5 +1,0 @@
-INSERT_UPDATE HelloWorldCronJob; code[unique = true]; job(code); sessionLanguage(isocode);
-; myHelloWorldServicelayerCronJob; myJobPerformable; en;
-
-INSERT_UPDATE Trigger; cronJob(code)[unique = true]    ; cronExpression
-; myHelloworldServicelayerCronJob ; 0 8 11 * * ?
