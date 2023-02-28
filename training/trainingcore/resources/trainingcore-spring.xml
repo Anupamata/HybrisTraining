@@ -573,4 +573,38 @@
 	<bean id="pitUserSkillLevelHandler" class="org.training.core.attributehandlers.PitUserSkillLevelHandler"/>
 	<bean id="pitUserSkillGradeHandler" class="org.training.core.attributehandlers.PitUserSkillGradeHandler"/>
 
+	<!-- interceptors bean def -->
+	<bean id="pitUserInitDefaultInterceptor" class="org.training.core.suggestion.impl.PitUserInitDefaultInterceptor"/>
+	<bean id="pitUserInitDefaultInterceptorMapping" class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+		<property name="interceptor" ref="pitUserInitDefaultInterceptor" />
+		<property name="typeCode" value="PITUsers" />
+	</bean>
+
+
+	<bean id="pitAddressPrepareInterceptor" class="org.training.core.suggestion.impl.PitAddressPrepareInterceptor"/>
+	<bean id="pitAddressPrepareInterceptorMapping" class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+		<property name="interceptor" ref="pitAddressPrepareInterceptor" />
+		<property name="typeCode" value="PITUserAddress" />
+	</bean>
+	<bean id="pitAddressValidateInterceptor" class="org.training.core.suggestion.impl.PitAddressValidateInterceptor"/>
+	<bean id="pitAddressValidateInterceptorMapping" class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+		<property name="interceptor" ref="pitAddressValidateInterceptor" />
+		<property name="typeCode" value="PITUserAddress" />
+	</bean>
+	<bean id="pitAddressLoadInterceptor" class="org.training.core.suggestion.impl.PitAddressLoadInterceptor"/>
+	<bean id="pitAddressLoadInterceptorMapping" class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+		<property name="interceptor" ref="pitAddressLoadInterceptor" />
+		<property name="typeCode" value="PITUserAddress" />
+	</bean>
+	<bean id="pitAddressInitDefaultInterceptor" class="org.training.core.suggestion.impl.PitAddressInitDefaultInterceptor"/>
+	<bean id="pitAddressInitDefaultInterceptorMapping" class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+		<property name="interceptor" ref="pitAddressInitDefaultInterceptor" />
+		<property name="typeCode" value="PITUserAddress" />
+	</bean>
+	<bean id="pitAddressRemoveInterceptor" class="org.training.core.suggestion.impl.PitAddressRemoveInterceptor"/>
+	<bean id="pitAddressRemoveInterceptorMapping" class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+		<property name="interceptor" ref="pitAddressRemoveInterceptor" />
+		<property name="typeCode" value="PITUserAddress" />
+	</bean>
+
 </beans>

@@ -2,19 +2,22 @@ package org.training.facades.PitUser.impl;
 
 import de.hybris.platform.servicelayer.dto.converter.Converter;
 import de.hybris.platform.servicelayer.model.ModelService;
+import org.training.core.model.PITUserAddressModel;
 import org.training.core.model.PITUsersModel;
 import org.training.core.services.PitUserService;
 import org.training.facades.PitUser.PitUserFacade;
+import org.training.facades.product.data.PitAddressData;
 import org.training.facades.product.data.PitUserData;
 
 import java.util.List;
 
 public class DefaultPitUserFacade implements PitUserFacade {
 
+
     private PitUserService pitUserService;
     private Converter<PITUsersModel, PitUserData> pitUserDataConverter;
     private Converter<PitUserData, PITUsersModel> pitUserDataReverseConverter;
-
+    private Converter<PitAddressData, PITUserAddressModel> pitAddressReverseConverter;
     private ModelService modelService;
 
     @Override
@@ -40,6 +43,16 @@ public class DefaultPitUserFacade implements PitUserFacade {
         final PITUsersModel pitUserModel = pitUserService.getPitUserByCode(pitId);
         pitUserService.sendEmail(pitUserModel);
     }
+
+    @Override
+    public void insertPitAddress(int pitId, PitAddressData pitAddressData) {
+        PITUserAddressModel pitAddressModel=getPitAddressReverseConverter().convert(pitAddressData);
+        PITUsersModel pitUsersModel=pitUserService.getPitUserByCode(pitId);
+        pitAddressModel.setUser(pitUsersModel);
+        modelService.save(pitAddressModel);
+
+    }
+
 
     public PitUserService getPitUserService() {
         return pitUserService;
@@ -70,5 +83,13 @@ public class DefaultPitUserFacade implements PitUserFacade {
 
     public void setModelService(ModelService modelService) {
         this.modelService = modelService;
+    }
+
+    public Converter<PitAddressData, PITUserAddressModel> getPitAddressReverseConverter() {
+        return pitAddressReverseConverter;
+    }
+
+    public void setPitAddressReverseConverter(Converter<PitAddressData, PITUserAddressModel> pitAddressReverseConverter) {
+        this.pitAddressReverseConverter = pitAddressReverseConverter;
     }
 }

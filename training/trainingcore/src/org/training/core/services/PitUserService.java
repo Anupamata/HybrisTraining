@@ -1,5 +1,6 @@
 package org.training.core.services;
 
+import org.training.core.model.PITUserAddressModel;
 import org.training.core.model.PITUsersModel;
 
 import java.util.List;
@@ -12,4 +13,5 @@ public interface PitUserService {
     void createColumnUpdateBusinessProcess(PITUsersModel pitUserModel);
 
     void sendEmail(PITUsersModel pitUsersModel);
+
 }

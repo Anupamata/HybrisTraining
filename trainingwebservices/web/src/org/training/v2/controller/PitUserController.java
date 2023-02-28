@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.training.facades.PitUser.PitUserFacade;
+import org.training.facades.product.data.PitAddressData;
 import org.training.facades.product.data.PitUserData;
 import org.training.queues.data.PitUserDataList;
 import org.training.user.data.PitUserDataListWSDTO;
@@ -47,5 +48,12 @@ public class PitUserController extends BaseController {
     public void sendEmail(@PathVariable final int pitId) {
         pitUserFacade.sendEmail(pitId);
     }
+    @RequestMapping(method = RequestMethod.POST,value = "/createAddress/{pitId}")
+    @ResponseBody
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public void createPitAddress(@PathVariable final int pitId,@RequestBody final PitAddressData pitAddressData) {
+        pitUserFacade.insertPitAddress(pitId,pitAddressData);
+    }
+
 }
 

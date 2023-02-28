@@ -171,7 +171,7 @@
 
                     <attribute qualifier="skillGrade" type="SkillGrade">
                         <description>Skill grade of the user based on designation.</description>
-                        <modifiers write="false"/>
+                        <modifiers/>
                         <persistence type="dynamic" attributeHandler="pitUserSkillGradeHandler"/>
                     </attribute>
                 </attributes>

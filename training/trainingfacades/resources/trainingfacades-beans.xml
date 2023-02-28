@@ -22,5 +22,12 @@
 		<property name="skillLevel" type="String"/>
 		<property name="skillGrade" type="org.training.core.enums.SkillGrade"/>
 	</bean>
+	<bean class="org.training.facades.product.data.PitAddressData">
+		<property name="addressId" type="Integer"/>
+		<property name="houseName" type="String"/>
+		<property name="city" type="String"/>
+		<property name="state" type="String"/>
+		<property name="pin" type="Integer"/>
+	</bean>
 
 </beans>

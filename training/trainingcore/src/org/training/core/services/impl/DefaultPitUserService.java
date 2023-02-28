@@ -1,6 +1,5 @@
 package org.training.core.services.impl;
 
-import de.hybris.platform.core.model.c2l.LanguageModel;
 import de.hybris.platform.core.model.user.CustomerModel;
 import de.hybris.platform.processengine.BusinessProcessService;
 import de.hybris.platform.servicelayer.event.EventService;
@@ -12,11 +11,11 @@ import org.apache.log4j.Logger;
 import org.training.core.dao.PitUserDao;
 import org.training.core.event.PitUserEmailEvent;
 import org.training.core.model.ColumnUpdateProcessModel;
+import org.training.core.model.PITUserAddressModel;
 import org.training.core.model.PITUsersModel;
 import org.training.core.model.PitUserEmailProcessModel;
 import org.training.core.services.PitUserService;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 public class DefaultPitUserService implements PitUserService {
@@ -65,6 +64,7 @@ public class DefaultPitUserService implements PitUserService {
     }
 
 
+
     public PitUserDao getPitUserDao() {
         return pitUserDao;
     }
@@ -86,6 +86,7 @@ public class DefaultPitUserService implements PitUserService {
 
     public void setModelService(ModelService modelService) {
         this.modelService = modelService;
+
     }
 
     public EventService getEventService() {
