@@ -142,5 +142,35 @@ INSERT_UPDATE MediaContainer; qualifier[unique = true]; $medias                 
                             ; redmi-note-10-pro       ; /redmi-note-10-pro/black ;
 
 
+#WCMS new page with text and image
+$contentCatalog=electronicsContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$picture=media(code, $contentCV)
+$siteResource = file:C:/Users/anupama.ta/Learning
+$lang=de
+$medias=medias(code, $contentCV);
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
+                         ;;customImageTextPage2;Custom Text Image Page;ContentPage1Template;/Picture Details
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='ContentPage1Template'];validComponentTypes(code);compTypeGroup(code)
+                             ;CustomTestSection;;;wide
+                             ;CustomImageSection;;;wide
+
+INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;;;;content;
+                                   ;;customPageHeadingComponent;CustomPage Heading information;customPageHeadingComponent;;;;Welcome....This is a custom page;
+
+INSERT_UPDATE Media;$contentCV[unique=true];mediaFormat(qualifier);code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];&imageRef;folder(qualifier)[default='images'];altText
+                   ;;300Wx300H;redmi-note-10.jpg;$siteResource/redmi-note-10-pro-dark-nebula;;redmi-note-10.jpg;;"Neue Sommerklassiker"
+
+INSERT_UPDATE SimpleBannerComponent; $contentCV[unique = true]; uid[unique = true]    ; name                   ; &componentRef       ; $picture[lang = $lang]
+                                   ;                          ; customPageBannerComponent   ; Custom Page Banner Component ; customPageBannerComponent ;redmi-note-10.jpg
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(uid,$contentCV)
+                         ;;CustomTextSectionSlot;CustomTestSection Paragraph Slot;true;customPageHeadingComponent
+                         ;;CustomSimpleBannerSectionSlot;CustomImageSection Banner Slot;true;customPageBannerComponent
+INSERT_UPDATE ContentSlotForPage; $contentCV[unique = true]; uid[unique = true]             ; position[unique = true]; page(uid, $contentCV)[unique = true][default = 'customImageTextPage2']; contentSlot(uid, $contentCV)[unique = true]
+                                    ;                          ; CustomTextSectionSlot-customImageTextPage2 ; Section1        ;                                                                             ; CustomTextSectionSlot
+                                    ;                          ; CustomSimpleBannerSectionSlot-customImageTextPage2    ; Section2A           ;                                                                             ; CustomSimpleBannerSectionSlot
 
 
