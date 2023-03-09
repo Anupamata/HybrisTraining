@@ -173,4 +173,7 @@ INSERT_UPDATE ContentSlotForPage; $contentCV[unique = true]; uid[unique = true] 
                                     ;                          ; CustomTextSectionSlot-customImageTextPage2 ; Section1        ;                                                                             ; CustomTextSectionSlot
                                     ;                          ; CustomSimpleBannerSectionSlot-customImageTextPage2    ; Section2A           ;                                                                             ; CustomSimpleBannerSectionSlot
 
+#translators - pricerow
+INSERT_UPDATE PriceRow;productId[unique=true];unit(code[unique=true,default=pieces]);currency(isocode)[unique=true];price[translator=org.training.core.translators.CustomTranslator];minqtd;unitFactor;net
+        ;REDME1;pieces;USD;-8.46;1;1;false
 
