@@ -29,5 +29,18 @@
 		<property name="state" type="String"/>
 		<property name="pin" type="Integer"/>
 	</bean>
-
+	<bean class="org.training.facades.product.data.EntriesData">
+		<import type="com.fasterxml.jackson.annotation.JsonProperty"/>
+		<property name="api" type="String"><annotations>@JsonProperty("API")</annotations></property>
+		<property name="description" type="String"><annotations>@JsonProperty("Description")</annotations></property>
+		<property name="auth" type="String"><annotations>@JsonProperty("Auth")</annotations></property>
+		<property name="https" type="Boolean"><annotations>@JsonProperty("HTTPS")</annotations></property>
+		<property name="cors" type="String"><annotations>@JsonProperty("Cors")</annotations></property>
+		<property name="link" type="String"><annotations>@JsonProperty("Link")</annotations></property>
+		<property name="category" type="String"><annotations>@JsonProperty("Category")</annotations></property>
+	</bean>
+	<bean class="org.training.facades.product.data.CountData">
+		<property name="Entries" type="java.util.List&lt;org.training.facades.product.data.EntriesData>"/>
+		<property name="count" type="Integer"/>
+	</bean>
 </beans>

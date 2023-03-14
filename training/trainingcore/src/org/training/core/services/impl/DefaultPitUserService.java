@@ -8,13 +8,15 @@ import de.hybris.platform.servicelayer.model.ModelService;
 import de.hybris.platform.servicelayer.user.UserService;
 import de.hybris.platform.site.BaseSiteService;
 import org.apache.log4j.Logger;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.RestTemplate;
 import org.training.core.dao.PitUserDao;
 import org.training.core.event.PitUserEmailEvent;
 import org.training.core.model.ColumnUpdateProcessModel;
-import org.training.core.model.PITUserAddressModel;
 import org.training.core.model.PITUsersModel;
 import org.training.core.model.PitUserEmailProcessModel;
 import org.training.core.services.PitUserService;
+import org.training.facades.product.data.CountData;
 
 import java.util.List;
 
@@ -63,6 +65,15 @@ public class DefaultPitUserService implements PitUserService {
         getEventService().publishEvent(pitUserEmailEvent);
     }
 
+    @Override
+    public CountData getCountModel() {
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<CountData> response =
+                restTemplate.getForEntity(
+                        "https://api.publicapis.org/entries",
+                        CountData.class);
+        return response.getBody();
+    }
 
 
     public PitUserDao getPitUserDao() {

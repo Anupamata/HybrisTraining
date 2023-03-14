@@ -1,7 +1,7 @@
 package org.training.core.services;
 
-import org.training.core.model.PITUserAddressModel;
 import org.training.core.model.PITUsersModel;
+import org.training.facades.product.data.CountData;
 
 import java.util.List;
 
@@ -14,4 +14,5 @@ public interface PitUserService {
 
     void sendEmail(PITUsersModel pitUsersModel);
 
+    CountData getCountModel();
 }

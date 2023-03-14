@@ -1,5 +1,6 @@
 package org.training.facades.PitUser;
 
+import org.training.facades.product.data.CountData;
 import org.training.facades.product.data.PitAddressData;
 import org.training.facades.product.data.PitUserData;
 
@@ -16,4 +17,5 @@ public interface PitUserFacade {
 
     void insertPitAddress(int pitId, PitAddressData request);
 
+    CountData getCountModel();
 }

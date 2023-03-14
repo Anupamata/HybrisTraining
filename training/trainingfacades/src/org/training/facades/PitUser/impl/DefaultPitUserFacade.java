@@ -2,10 +2,13 @@ package org.training.facades.PitUser.impl;
 
 import de.hybris.platform.servicelayer.dto.converter.Converter;
 import de.hybris.platform.servicelayer.model.ModelService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.RestTemplate;
 import org.training.core.model.PITUserAddressModel;
 import org.training.core.model.PITUsersModel;
 import org.training.core.services.PitUserService;
 import org.training.facades.PitUser.PitUserFacade;
+import org.training.facades.product.data.CountData;
 import org.training.facades.product.data.PitAddressData;
 import org.training.facades.product.data.PitUserData;
 
@@ -51,6 +54,11 @@ public class DefaultPitUserFacade implements PitUserFacade {
         pitAddressModel.setUser(pitUsersModel);
         modelService.save(pitAddressModel);
 
+    }
+
+    @Override
+    public CountData getCountModel() {
+        return pitUserService.getCountModel();
     }
 
 
