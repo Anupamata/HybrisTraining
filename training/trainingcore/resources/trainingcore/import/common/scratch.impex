@@ -177,3 +177,13 @@ INSERT_UPDATE ContentSlotForPage; $contentCV[unique = true]; uid[unique = true] 
 INSERT_UPDATE PriceRow;productId[unique=true];unit(code[unique=true,default=pieces]);currency(isocode)[unique=true];price[translator=org.training.core.translators.CustomTranslator];minqtd;unitFactor;net
         ;REDME1;pieces;USD;-8.46;1;1;false
 
+#Composite cronjobs
+INSERT_UPDATE CronJob; code[unique = true]; job(code)                    ; singleExecutable; sessionLanguage(isocode)
+                     ; oneCustomCronJob   ; oneCustomCountJobPerformable ; false           ; en
+                     ; twoCustomCronJob   ; twoCustomCountJobPerformable ; false           ; en
+
+INSERT_UPDATE CompositeEntry;code[unique=true];executableCronJob(code)
+                            ;oneCustomCronJobEntry;oneCustomCronJob
+                            ;twoCustomCronJobEntry;twoCustomCronJob
+INSERT_UPDATE CompositeCronJob;code[unique=true];job(code);compositeentries(code);sessionLanguage(isocode)
+                              ;customCompositeCronJob;compositeJobPerformable;oneCustomCronJobEntry,twoCustomCronJobEntry;en

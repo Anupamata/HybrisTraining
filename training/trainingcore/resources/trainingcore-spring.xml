@@ -606,5 +606,11 @@
 		<property name="interceptor" ref="pitAddressRemoveInterceptor" />
 		<property name="typeCode" value="PITUserAddress" />
 	</bean>
-
+<!-- composite cronjobs-->
+	<bean id="oneCustomCountJobPerformable"
+		  class="org.training.core.job.OneCustomCountJobPerformable"
+		  parent="abstractJobPerformable"/>
+	<bean id="twoCustomCountJobPerformable"
+		  class="org.training.core.job.TwoCustomCountJobPerformable"
+		  parent="abstractJobPerformable"/>
 </beans>
