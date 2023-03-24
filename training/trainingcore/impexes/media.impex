@@ -1,0 +1,11 @@
+# Media & MediaContainer
+$contentCatalog = electronicsProductCatalog
+$catalogVersion = catalogversion(catalog(id[default=$contentCatalog]), version[default='Staged'])[unique=true, default=$contentCatalog:Staged]
+$media = @media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator]
+$medias = medias(code, $catalogVersion)
+$siteResource = file:C:/Users/anupama.ta/Learning
+INSERT_UPDATE Media; mediaFormat(qualifier); $catalogVersion; code[unique = true]      ; @media[translator = de.hybris.platform.impex.jalo.media.MediaDataTranslator]; mime[default = 'image/jpeg']; folder(qualifier)[default = 'images']
+                   ; 300Wx300H             ;                ; /redmi-note-10-pro/black ; $siteResource/redmi-note-10-pro-dark-nebula.jpg
+
+INSERT_UPDATE MediaContainer; qualifier[unique = true]; $medias                  ; $catalogVersion
+                            ; redmi-note-10-pro       ; /redmi-note-10-pro/black ;

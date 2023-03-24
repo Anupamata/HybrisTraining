@@ -1,0 +1,19 @@
+#Insert values into PITUsers
+INSERT_UPDATE PITUsers; pitId[unique = true]; name   ; username  ; password  ; designation
+                      ; 1634                ; Joseph ; joseph.ts ; josephtom ; BA
+                      ; 1641                ; Lena   ; lena.ps   ; lenaps    ; Associate
+
+#Insert values into PITUserAddress
+INSERT_UPDATE PITUserAddress; addressId[unique = true]; houseName  ; city     ; state  ; pin
+                            ; 99                      ; Vrindhavan ; Thrissur ; Kerala ; 877785
+
+#Insert values into PITUsers and PITUserAddress(both commands together)
+INSERT_UPDATE PITUserAddress; addressId[unique = true]; houseName  ; city     ; state  ; pin    ; user(pitId)
+                            ; 100                     ; Vrindhavan ; Thrissur ; Kerala ; 877785 ; 1641
+                            ; 101                     ; Vrindhavan ; Thrissur ; Kerala ; 877785 ; 1641
+
+#
+$dev = designation[default='Associate']
+UPDATE PITUsers; pitId[unique = true]; $dev
+               ; 1630
+               ; 1632

@@ -1,0 +1,16 @@
+#insert new product and price row
+$defaultCurrency = USD
+$productCatalog = electronicsProductCatalog
+$catalogVersion = catalogversion(catalog(id[default=$productCatalog]), version[default='Staged'])[unique=true, default=$productCatalog:Staged]
+$approved = approvalstatus(code)[default='approved']
+$prices = europe1prices[translator=de.hybris.platform.europe1.jalo.impex.Europe1PricesTranslator]
+
+INSERT_UPDATE Product; code[unique = true]; name              ; $prices ; unit(code); description; $catalogVersion; $approved
+                     ; REDME1             ; Redme Note 10 Pro ; 150 USD ; pieces    ; 6 GB RAM | 128 GB ROM | Expandable Upto 512 GB | 16.94 cm (6.67 inch) Full HD+ Super AMOLED Display | 64MP + 8MP + 5MP + 2MP | 16MP Front Camera5020 mAh Li-Polymer Battery | Qualcomm Snapdragon 732G Processor
+
+#translators - pricerow
+INSERT_UPDATE PriceRow; productId[unique = true]; unit(code[unique = true, default = pieces]); currency(isocode)[unique = true]; price[translator = org.training.core.translators.CustomTranslator]; minqtd; unitFactor; net
+                      ; REDME1                  ; pieces                                     ; USD                             ; -8.46                                                             ; 1     ; 1         ; false
+
+
+

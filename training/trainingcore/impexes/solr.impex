@@ -1,0 +1,29 @@
+#Solr indexing--solr-sample
+$productCatalog = electronicsProductCatalog
+$catalogVersions = catalogVersions(catalog(id), version);
+$facetSearchConfigName = electronicsIndex
+$facetSearchConfigDescription = Electronics Solr Index
+$searchIndexNamePrefix = electronics
+$solrIndexedType = electronicsProductType
+$indexBaseSite = electronics
+$indexLanguages = ja, en, de, zh
+$indexCurrencies = JPY, USD
+$col_searchQueryTemplate = searchQueryTemplate(name, indexedType(identifier))[unique=true, default=DEFAULT:$solrIndexedType]
+$col_indexedProperty = indexedProperty(name, solrIndexedType(identifier[default=$solrIndexedType]))
+
+INSERT_UPDATE SolrIndexedProperty; solrIndexedType(identifier)[unique = true]; name[unique = true]; type(code); sortableType(code); currency[default = false]; localized[default = false]; multiValue[default = false]; facet[default = false]; facetType(code); facetSort(code); priority; visible; fieldValueProvider; valueProviderParameter
+                                 ; $solrIndexedType                          ; companyName        ; string    ;                   ;                          ;                           ;                            ; true                  ; MultiSelectOr  ; Custom         ; 1000    ; true   ;
+INSERT_UPDATE SolrSearchQueryProperty; $col_indexedProperty[unique = true]; ftsQuery[default = false]; ftsQueryBoost; ftsQueryMinTermLength; ftsPhraseQuery[default = false]; ftsPhraseQueryBoost; ftsPhraseQuerySlop; ftsWildcardQuery[default = false]; ftsWildcardQueryBoost; ftsWildcardQueryMinTermLength; ftsWildcardQueryType(code)[default = 'POSTFIX']; ftsFuzzyQuery[default = false]; ftsFuzzyQueryBoost; ftsFuzzyQueryMinTermLength; ftsFuzzyQueryFuzziness; useForHighlighting[default = false]; includeInResponse[default = true]; $col_searchQueryTemplate
+                                     ; companyName                        ; true                     ; 100          ; 5                    ;true                                ;80                    ;                   ;                                  ;                      ;                              ;                                                ;true                               ;20                   ;                           ;                       ;                                    ;
+INSERT_UPDATE SolrSearchQueryProperty; $col_indexedProperty[unique = true]; priority; facetDisplayNameProvider; facetSortProvider; facetTopValuesProvider; includeInResponse[default = true]; facet[default = true]; facetType(code)[default = 'MultiSelectOr']; $col_searchQueryTemplate
+                                     ; companyName                        ; 4000    ;                         ;                  ; defaultTopValuesProvider
+#suggestion box
+#INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] ; facet ; ftsPhraseQuery[default=false] ; ftsPhraseQueryBoost ; ftsQuery[default=false] ; ftsQueryBoost ; ftsFuzzyQuery[default=false] ; ftsFuzzyQueryBoost ; ftsWildcardQuery[default=false] ; ftsWildcardQueryType(code)[default=POSTFIX] ; ftsWildcardQueryBoost ; ftsWildcardQueryMinTermLength ; includeInResponse[default=true] ; useForHighlighting[default=false]
+#                                      ; companyName:$solrIndexedType ; ; ; TRUE ; 80 ; TRUE ; 40 ; TRUE ; 20 ; ; ; ; ; ;
+#facet
+#INSERT_UPDATE SolrSearchQueryProperty; $col_indexedProperty[unique=true]; ftsQuery[default=false]; ftsQueryBoost; ftsQueryMinTermLength; ftsPhraseQuery[default=false]; ftsPhraseQueryBoost; ftsPhraseQuerySlop; ftsWildcardQuery[default=false]; ftsWildcardQueryBoost; ftsWildcardQueryMinTermLength; ftsWildcardQueryType(code)[default='POSTFIX']; ftsFuzzyQuery[default=false]; ftsFuzzyQueryBoost; ftsFuzzyQueryMinTermLength; ftsFuzzyQueryFuzziness; useForHighlighting[default=false]; includeInResponse[default=true]; $col_searchQueryTemplate
+#                                     ; engineCode ; true ; 100 ; 5 ; ; ; ; ; ; ; ; ; ; ; ; ;
+#INSERT_UPDATE SolrSearchQueryProperty; $col_indexedProperty[unique=true]; priority; facetDisplayNameProvider; facetSortProvider; facetTopValuesProvider; includeInResponse[default=true]; facet[default=true]; facetType(code)[default='MultiSelectOr']; $col_searchQueryTemplate
+#                                     ; companyName ; 4000 ; ; ; defaultTopValuesProvider
+#suggestion box+facet=16
+
