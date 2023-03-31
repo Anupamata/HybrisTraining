@@ -221,6 +221,11 @@
                         <modifiers/>
                         <description>company Name of the Product</description>
                     </attribute>
+                    <attribute qualifier="pitsPrice" type="java.lang.Double">
+                        <persistence type="property"/>
+                        <modifiers/>
+                        <description>PITS Price of the Product</description>
+                    </attribute>
                 </attributes>
             </itemtype>
         </typegroup>

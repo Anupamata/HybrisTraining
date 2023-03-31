@@ -613,4 +613,10 @@
 	<bean id="twoCustomCountJobPerformable"
 		  class="org.training.core.job.TwoCustomCountJobPerformable"
 		  parent="abstractJobPerformable"/>
+	<bean id="pitsPriceFacetValueProvider"
+		  class="org.training.core.search.solrfacetsearch.provider.impl.PitsPriceFacetValueProvider"
+		  parent="abstractPropertyFieldValueProvider">
+		<property name="fieldNameProvider" ref="solrFieldNameProvider" />
+		<property name="priceService" ref="priceService" />
+	</bean>
 </beans>

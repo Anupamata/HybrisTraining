@@ -15,5 +15,12 @@ public class CustomSearchResultVariantProductPopulator extends SearchResultVaria
         else {
             target.setCompanyName("UNKNOWN");
         }
+        final var price=this.<String>getValue(source,"pitsPrice_usd_string");
+        if(price!=null) {
+            target.setPitsPrice(price);
+        }
+        else {
+            target.setPitsPrice("0");
+        }
     }
 }

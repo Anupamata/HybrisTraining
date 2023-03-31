@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at Mar 14, 2023, 2:49:03 PM                    ---
+ * --- Generated at Mar 27, 2023, 4:43:32 PM                    ---
  * ----------------------------------------------------------------
  */
 package org.training.core.constants;
@@ -33,6 +33,7 @@ public class GeneratedTrainingCoreConstants
 		public static class Product
 		{
 			public static final String COMPANYNAME = "companyName".intern();
+			public static final String PITSPRICE = "pitsPrice".intern();
 		}
 	}
 	public static class Enumerations

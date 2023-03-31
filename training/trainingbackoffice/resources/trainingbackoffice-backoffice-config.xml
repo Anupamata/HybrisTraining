@@ -138,6 +138,7 @@
 	<context merge-by="type" parent="GenericItem" type="Product" component="listview">
 		<lv:list-view>
 			<lv:column qualifier="companyName" sortable="false" position="0"/>
+			<lv:column qualifier="pitsPrice" sortable="true" position="1"/>
 		</lv:list-view>
 	</context>
 </config>
